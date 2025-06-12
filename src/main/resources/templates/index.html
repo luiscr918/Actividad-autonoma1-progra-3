@@ -119,12 +119,13 @@
             </div>
             <img class="relative w-40" src="https://user-images.githubusercontent.com/2805249/64069899-8bdaa180-cc97-11e9-9b19-1a9e1a254c18.png" alt="">
         </div>
+
         <div class="relative text-white px-6 pb-6 mt-6">
             <span th:text="${product.nombre}"
                     class="block opacity-75 -mb-1"></span>
             <div class="flex justify-between">
-                <span th:text="${product.proveedor}" class="block font-semibold text-xl"></span>
-                <span th:text="'$' ${product.precioUnitario}" class="block bg-white rounded-full text-orange-500 text-xs font-bold px-3 py-2 leading-none flex items-center"></span>
+                <span th:text="${product.proveedor.nombre}" class="block font-semibold text-xl"></span>
+                <span th:text="'$'+ ${product.precioUnitario}" class="block bg-white rounded-full text-orange-500 text-xs font-bold px-3 py-2 leading-none flex items-center"></span>
             </div>
         </div>
     </div>
