@@ -45,7 +45,7 @@
                         <!-- FORMULARIO que envía cliente y producto -->
                         <form th:action="@{/factura/formulario}" method="get">
                             <input type="hidden" name="cedula" th:value="${cliente.cedula}" />
-                            <select name="id"
+                            <select name="productoId"
                                     class="w-full bg-gray-800 border border-gray-300 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5">
                                 <option th:each="producto : ${productos}"
                                         th:value="${producto.id}"

@@ -36,11 +36,11 @@ public class FacturaController {
     //1.amuestro mi form y la nueva factura que ingrese la guardo en la variable factura
     @GetMapping("/formulario")
     public String mostrarFormularioFactura(@RequestParam String cedula,
-                                           @RequestParam Long id,
+                                           @RequestParam Long productoId,
                                            Model model){
         // Aquí cargo los objetos de cliente y producto según los IDs
        Optional<Cliente>  cliente = clienteService.buscarClienteCedula(cedula);
-        Optional<Producto> producto = productoService.buscarProductoId(id);
+        Optional<Producto> producto = productoService.buscarProductoId(productoId);
 
         Factura factura = new Factura();
         factura.setCliente(cliente.get());
