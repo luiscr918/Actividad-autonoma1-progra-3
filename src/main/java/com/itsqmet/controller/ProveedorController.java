@@ -22,6 +22,7 @@ public class ProveedorController {
     @GetMapping("/lista")
     public String mostrarProveedores(Model model){
         List<Proveedor> proveedores=proveedorService.mostrarProveedores();
+        model.addAttribute("proveedores", proveedores);
         return "proveedor/lista";
     }
     //Insertar un nuevo proveedor

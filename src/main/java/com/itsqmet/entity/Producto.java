@@ -26,4 +26,6 @@ public class Producto {
 
     private Double precioUnitario;
 
+    private String rutaImagen;
+
 }

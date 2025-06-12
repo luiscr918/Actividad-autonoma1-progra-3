@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create Account</title>
+    <title>Registro Factura</title>
+    <link rel="icon" type="image/png" th:href="@{/imgs/logoEmpresa.png}" />
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
@@ -48,14 +49,29 @@
                     <input  th:field="*{cliente.cedula}" />
                     <input  th:field="*{producto.id}" />
                 </div>
+                <label class="text-gray-400 mb-8">
+                    Cedula del Cliente
+                </label>
                 <input  readonly th:value="${factura.cliente.cedula}" type="text"  class="w-full bg-[#1c1c24] text-white rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-purple-600">
+                <label class="text-gray-400 mb-8">
+                    Id del Producto
+                </label>
                 <input readonly th:value="${factura.producto.id}" type="text"  class="w-full bg-[#1c1c24] text-white rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-purple-600">
+                <label class="text-gray-400 mb-8">
+                    Precio Unitario
+                </label>
                 <input id="precio" readonly th:value="${factura.producto.precioUnitario}" type="text"  class="w-full bg-[#1c1c24] text-white rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-purple-600">
                 <input id="cantidad" th:field="*{cantidad}" type="number" placeholder="Cantidad del Producto" class="w-full bg-[#1c1c24] text-white rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-purple-600">
+                <label class="text-gray-400 mb-8">
+                    Subtotal
+                </label>
                 <input id="subtotal" readonly th:field="*{subtotal}" type="text" placeholder="Subtotal" class="w-full bg-[#1c1c24] text-white rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-purple-600">
+                <label class="text-gray-400 mb-8">
+                    Total
+                </label>
                 <input id="total" readonly th:field="*{total}" type="text" placeholder="Total" class="w-full bg-[#1c1c24] text-white rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-purple-600">
                 <button type="submit" class="w-full bg-purple-600 text-white rounded-lg p-3 hover:bg-purple-700 transition-colors">
-                    Registrarse
+                    Registrar
                 </button>
             </form>
         </div>

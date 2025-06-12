@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create Account</title>
+    <title>Registro Producto</title>
+    <link rel="icon" type="image/png" th:href="@{/imgs/logoEmpresa.png}" />
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
@@ -56,7 +57,7 @@
                             th:text="${proveedor.nombre}"
                     ></option>
                 </select>
-
+                <input th:field="*{rutaImagen}" type="text" placeholder="Ruta de la imagen del Producto" class="w-full bg-[#1c1c24] text-white rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-purple-600">
                 <button type="submit" class="w-full bg-purple-600 text-white rounded-lg p-3 hover:bg-purple-700 transition-colors">
                     Registrar Producto
                 </button>

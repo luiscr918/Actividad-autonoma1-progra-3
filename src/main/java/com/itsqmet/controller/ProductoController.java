@@ -29,6 +29,7 @@ private ProductoService productoService;
     @GetMapping("/lista")
     public String mostrarProductos(Model model){
         List<Producto> productos=productoService.mostrarProductos();
+        model.addAttribute("productos", productos);
         return "producto/lista";
     }
     //Insertar un nuevo producto
