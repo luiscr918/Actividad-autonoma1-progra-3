@@ -18,9 +18,6 @@ public class Proveedor {
     private List<Producto> productos;
 
 
-
-
-
     private  String nombre;
 
     private String direccion;

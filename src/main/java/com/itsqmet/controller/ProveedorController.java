@@ -6,10 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/proveedor")
@@ -33,8 +35,20 @@ public class ProveedorController {
     @PostMapping("/guardar")
     public String guardarProveedor(Proveedor proveedor){
         proveedorService.GuardarProveedor(proveedor);
-        return "redirect:/lista";
+        return "redirect:/proveedor/lista";
     }
     //Actualizar el proveedor
+    @GetMapping("/actualizar/{id}")
+    public String actualizarProveedor(@PathVariable Long id,Model model){
+        Optional<Proveedor> proveedor=proveedorService.buscarProveedorId(id);
+        model.addAttribute("proveedor", proveedor);
+        return "proveedor/registro";
+    }
+    //Eliminar un proveedor
+    @GetMapping("/eliminar/{id}")
+    public String eliminarProveedor(@PathVariable Long id){
+        proveedorService.eliminarProveedor(id);
+        return "redirect:/proveedor/lista";
+    }
 
 }
