@@ -2,7 +2,9 @@ package com.itsqmet.controller;
 
 import com.itsqmet.entity.Cliente;
 import com.itsqmet.entity.Cliente;
+import com.itsqmet.entity.Producto;
 import com.itsqmet.service.ClienteService;
+import com.itsqmet.service.ProductoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,10 +21,18 @@ import java.util.Optional;
 public class ClienteController {
 @Autowired
 private ClienteService clienteService;
+//llamar a la lista de produtos
+    @Autowired
+    private ProductoService productoService;
+
+
     //listar todos los clientes de la bd
     @GetMapping("/lista")
     public String mostrarClientes(Model model){
         List<Cliente> clientes=clienteService.mostrarClientes();
+        List<Producto> productos= productoService.mostrarProductos();
+        model.addAttribute("clientes",clientes);
+        model.addAttribute("productos",productos);
         return "cliente/lista";
     }
     //Insertar un nuevo cliente

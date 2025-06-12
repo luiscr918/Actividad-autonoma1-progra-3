@@ -1,10 +1,98 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Lista Clientes</title>
+
+    <link
+            href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
+            rel="stylesheet">
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body>
-<p>hola</p>
+
+<div class="flex items-center justify-center min-h-screen bg-gray-900">
+    <div class="col-span-12">
+        <div class="overflow-auto lg:overflow-visible ">
+            <table class="table text-gray-400 border-separate space-y-6 text-sm">
+                <thead class="bg-gray-800 text-gray-500">
+                <tr>
+                    <th class="p-3">Nombre</th>
+                    <th class="p-3 text-left">Cedula</th>
+                    <th class="p-3 text-left">Fecha de Nacimiento</th>
+                    <th class="p-3 text-left">Producto</th>
+                    <th class="p-3 text-left">Opciones</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="cliente : ${clientes}"
+                        class="bg-gray-800">
+                    <td class="p-3">
+                        <div class="flex align-items-center">
+                            <div class="ml-3">
+                                <div th:text="${cliente.nombre}"></div>
+                                <div th:text="${cliente.apellido}" class="text-gray-500"></div>
+                            </div>
+                        </div>
+                    </td>
+                    <td th:text="${cliente.cedula}" class="p-3">
+                    </td>
+                    <td th:text="${cliente.fechaNacimiento}" class="p-3 font-bold">
+                    </td>
+                    <td class="p-3">
+                        <!-- FORMULARIO que envía cliente y producto -->
+                        <form th:action="@{/factura/formulario}" method="get">
+                            <input type="hidden" name="cedula" th:value="${cliente.cedula}" />
+                            <select name="id"
+                                    class="w-full bg-gray-800 border border-gray-300 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5">
+                                <option th:each="producto : ${productos}"
+                                        th:value="${producto.id}"
+                                        th:text="${producto.nombre}"></option>
+                            </select>
+                            <button type="submit"
+                                    class="mt-2 px-3 py-1 bg-blue-600 hover:bg-blue-700 text-white rounded">
+                                <i class="material-icons-outlined text-base align-middle">receipt_long</i>
+                            </button>
+                        </form>
+                    </td>
+                    <td class="p-3 ">
+                        <a th:href="@{/cliente/actualizar/}+${cliente.cedula}" class="text-gray-400 hover:text-gray-100  mx-2">
+                            <i class="material-icons-outlined text-base">edit</i>
+                        </a>
+                        <a th:href="@{/cliente/eliminar/}+${cliente.cedula}"class="text-gray-400 hover:text-gray-100  ml-2">
+                            <i class="material-icons-round text-base">delete_outline</i>
+                        </a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 </body>
 </html>
+<style>
+    .table {
+        border-spacing: 0 15px;
+    }
+
+    i {
+        font-size: 1rem !important;
+    }
+
+    .table tr {
+        border-radius: 20px;
+    }
+
+    tr td:nth-child(n+5),
+    tr th:nth-child(n+5) {
+        border-radius: 0 .625rem .625rem 0;
+    }
+
+    tr td:nth-child(1),
+    tr th:nth-child(1) {
+        border-radius: .625rem 0 0 .625rem;
+    }
+</style>
