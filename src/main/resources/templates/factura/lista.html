@@ -1,10 +1,84 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Lista Facturas</title>
+
+    <link
+            href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
+            rel="stylesheet">
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body>
 
+<div class="flex items-center justify-center min-h-screen bg-gray-900">
+    <div class="col-span-12">
+        <div class="overflow-auto lg:overflow-visible ">
+            <table class="table text-gray-400 border-separate space-y-6 text-sm">
+                <thead class="bg-gray-800 text-gray-500">
+                <tr>
+                    <th class="p-3">Num</th>
+                    <th class="p-3 text-left">Propietario</th>
+                    <th class="p-3 text-left">Nombre Producto</th>
+                    <th class="p-3 text-left">Precio Unitario</th>
+                    <th class="p-3 text-left">Subtotal</th>
+                    <th class="p-3 text-left">Total</th>
+                    <th class="p-3 text-left">Opciones</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="factura : ${facturas}"
+                    class="bg-gray-800">
+                    <td th:text="${factura.id}" class="p-3">
+                    <td th:text="${factura.cliente.nombre}" class="p-3">
+                    <td th:text="${factura.producto.nombre}" class="p-3">
+                    <td th:text="${factura.producto.precioUnitario}" class="p-3">
+                    </td>
+                    <td th:text="${factura.subtotal}" class="p-3">
+                    <td th:text="${factura.total}" class="p-3 font-bold">
+                    </td>
+                    <td class="p-3 ">
+                        <form th:action="@{/factura/actualizar/}+${factura.id}" method="get">
+                            <input name="cedula" type="hidden" th:value="${factura.cliente.cedula}" />
+                            <input name="productoId" type="hidden" th:value="${factura.producto.id}" />
+                        <button type="submit" class="text-gray-400 hover:text-gray-100  mx-2">
+                            <i class="material-icons-outlined text-base">edit</i>
+                        </button>
+                        </form>
+                        <a th:href="@{/factura/eliminar/}+${factura.id}"class="text-gray-400 hover:text-gray-100  ml-2">
+                            <i class="material-icons-round text-base">delete_outline</i>
+                        </a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 </body>
 </html>
+<style>
+    .table {
+        border-spacing: 0 15px;
+    }
+
+    i {
+        font-size: 1rem !important;
+    }
+
+    .table tr {
+        border-radius: 20px;
+    }
+
+    tr td:nth-child(n+5),
+    tr th:nth-child(n+5) {
+        border-radius: 0 .625rem .625rem 0;
+    }
+
+    tr td:nth-child(1),
+    tr th:nth-child(1) {
+        border-radius: .625rem 0 0 .625rem;
+    }
+</style>

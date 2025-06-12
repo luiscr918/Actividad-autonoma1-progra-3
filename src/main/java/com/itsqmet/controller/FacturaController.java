@@ -56,8 +56,17 @@ public class FacturaController {
     }
     //Actualizar el factura
     @GetMapping("/actualizar/{id}")
-    public String actualizarFactura(@PathVariable Long id, Model model){
-        Optional<Factura> factura=facturaService.buscarFacturaId(id);
+    public String actualizarFactura(@PathVariable Long id,
+                                    @RequestParam String cedula,
+                                    @RequestParam Long productoId,
+                                    Model model){
+
+        Optional<Factura> facturaOp=facturaService.buscarFacturaId(id);
+        Factura factura=facturaOp.get();
+        Optional<Cliente>  cliente = clienteService.buscarClienteCedula(cedula);
+        Optional<Producto> producto = productoService.buscarProductoId(productoId);
+        factura.setCliente(cliente.get());
+        factura.setProducto(producto.get());
         model.addAttribute("factura", factura);
         return "factura/registro";
     }

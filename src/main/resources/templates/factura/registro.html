@@ -45,6 +45,8 @@
                   class="space-y-4">
                 <div hidden>
                     <input th:field="*{id}" type="number" placeholder="id" class="w-full bg-[#1c1c24] text-white rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-purple-600">
+                    <input  th:field="*{cliente.cedula}" />
+                    <input  th:field="*{producto.id}" />
                 </div>
                 <input  readonly th:value="${factura.cliente.cedula}" type="text"  class="w-full bg-[#1c1c24] text-white rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-purple-600">
                 <input readonly th:value="${factura.producto.id}" type="text"  class="w-full bg-[#1c1c24] text-white rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-purple-600">
